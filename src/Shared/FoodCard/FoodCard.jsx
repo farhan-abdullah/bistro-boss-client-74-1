@@ -6,13 +6,16 @@ const FoodCard = ({ item }) => {
 		<div>
 			<div className='card w-96 bg-base-100 shadow-xl'>
 				<figure>
-					<img src='/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg' alt='Shoes' />
+					<img src={image} alt={name} />
+					<p className='bg-slate-900 absolute right-5 top-2 rounded-lg p-1 text-white'>
+						${price}
+					</p>
 				</figure>
 				<div className='card-body'>
-					<h2 className='card-title'>Shoes!</h2>
-					<p>If a dog chews shoes whose shoes does he choose?</p>
-					<div className='card-actions justify-end'>
-						<button className='btn btn-primary'>Buy Now</button>
+					<h2 className='card-title'>{name}</h2>
+					<p>{recipe}</p>
+					<div className='card-actions justify-center'>
+						<button className='btn btn-outline border-b-4 border-0'>Add to Cart</button>
 					</div>
 				</div>
 			</div>
