@@ -16,6 +16,7 @@ const Menu = () => {
 	const soups = menu.filter((item) => item.category == 'soup');
 	const salads = menu.filter((item) => item.category == 'salad');
 	const offers = menu.filter((item) => item.category == 'offered');
+	const drinks = menu.filter((item) => item.category == 'drinks');
 
 	return (
 		<div>
@@ -25,10 +26,11 @@ const Menu = () => {
 			<Cover img={img} title={'our menu'}></Cover>
 			<SectionTitle subHeading={"Don't Miss"} heading={'Todays Offer'}></SectionTitle>
 			<MenuCategory items={offers}></MenuCategory>
-			<MenuCategory items={desserts} title={'Desert'} img={img1}></MenuCategory>
+			<MenuCategory items={desserts} title={'dessert'} img={img1}></MenuCategory>
 			<MenuCategory items={pizzas} title={'pizza'} img={img2}></MenuCategory>
 			<MenuCategory items={salads} title={'salads'} img={img3}></MenuCategory>
 			<MenuCategory items={soups} title={'soups'} img={img4}></MenuCategory>
+			<MenuCategory items={drinks} title={'drinks'} img={img4}></MenuCategory>
 		</div>
 	);
 };
