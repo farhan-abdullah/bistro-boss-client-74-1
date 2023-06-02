@@ -1,6 +1,9 @@
 import React from 'react';
 
 const FoodCard = ({ item }) => {
+	const handleAddToCart = (item) => {
+		console.log(item);
+	};
 	const { name, image, price, recipe } = item;
 	return (
 		<div>
@@ -15,7 +18,9 @@ const FoodCard = ({ item }) => {
 					<h2 className='card-title'>{name}</h2>
 					<p>{recipe}</p>
 					<div className='card-actions justify-center'>
-						<button className='btn btn-outline bg-slate-200 border-b-4 border-0 border-orange-400 text-orange-400'>
+						<button
+							onClick={() => handleAddToCart(item)}
+							className='btn btn-outline bg-slate-200 border-b-4 border-0 border-orange-400 text-orange-400'>
 							Add to Cart
 						</button>
 					</div>
