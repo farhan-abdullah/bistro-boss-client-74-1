@@ -6,13 +6,17 @@ import {
 	validateCaptcha,
 } from 'react-simple-captcha';
 import AuthProvider, { AuthContext } from '../../provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { signOut } from 'firebase/auth';
 
 const Login = () => {
 	const { login } = useContext(AuthContext);
 	const captchaRef = useRef(null);
 	const [disabled, setDisabled] = useState(true);
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || '/';
 	const handleLogin = (event) => {
 		event.preventDefault();
 		const form = event.target;
@@ -21,24 +25,25 @@ const Login = () => {
 		login(email, password)
 			.then((res) => {
 				const user = res.user;
-				prompt(user);
+
+				navigate(from, { replace: true });
 			})
-			.catch((e) => {
-				prompt(e.message);
-			});
+			.catch((e) => {});
 	};
 	useEffect(() => {
 		loadCaptchaEnginge(6);
 	}, []);
 
-	const handleValidate = () => {
-		const user_captcha_value = captchaRef.current.value;
+	const handleValidate = (e) => {
+		// const user_captcha_value = captchaRef.current.value;
+		const user_captcha_value = e.target.value;
 		if (validateCaptcha(user_captcha_value) == true) {
 			setDisabled(false);
 		} else {
 			setDisabled(true);
 		}
 	};
+
 	return (
 		<>
 			<Helmet>
@@ -85,18 +90,15 @@ const Login = () => {
 									<LoadCanvasTemplate />
 								</label>
 								<input
+									onBlur={handleValidate}
 									required
 									type='text'
 									name='captcha'
 									placeholder='Type the text above'
 									className='input input-bordered'
-									ref={captchaRef}
+									// ref={captchaRef}
 								/>
-								<button
-									onClick={handleValidate}
-									className='btn btn-outline btn-xs mt-2'>
-									Validate
-								</button>
+								{/* <button className='btn btn-outline btn-xs mt-2'>Validate</button> */}
 							</div>
 							<div className='form-control mt-6'>
 								<input
