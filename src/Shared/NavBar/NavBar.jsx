@@ -12,7 +12,7 @@ const NavBar = () => {
 			});
 	};
 	const nav = (
-		<>
+		<div className='flex justify-center'>
 			<li>
 				<Link to='/'>Home</Link>
 			</li>
@@ -24,16 +24,25 @@ const NavBar = () => {
 				<Link to={`/order/${'salads'}`}>Order Food</Link>
 			</li>
 
+			{user?.photoURL && (
+				<img
+					className='w-8 h-8 rounded-full'
+					src={user?.photoURL}
+					alt={user?.displayName}
+				/>
+			)}
 			{user ? (
-				<button className='btn btn-ghost' onClick={handleLogout}>
-					Logout
-				</button>
+				<>
+					<button className='btn btn-ghost' onClick={handleLogout}>
+						Logout
+					</button>
+				</>
 			) : (
 				<li>
 					<Link to='/login'>Login</Link>
 				</li>
 			)}
-		</>
+		</div>
 	);
 	return (
 		<div>
