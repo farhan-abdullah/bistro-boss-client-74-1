@@ -25,10 +25,11 @@ const Login = () => {
 		login(email, password)
 			.then((res) => {
 				const user = res.user;
-
 				navigate(from, { replace: true });
 			})
-			.catch((e) => {});
+			.catch((e) => {
+				console.log(e.message);
+			});
 	};
 	useEffect(() => {
 		loadCaptchaEnginge(6);
@@ -91,7 +92,6 @@ const Login = () => {
 								</label>
 								<input
 									onBlur={handleValidate}
-									required
 									type='text'
 									name='captcha'
 									placeholder='Type the text above'
@@ -100,9 +100,10 @@ const Login = () => {
 								/>
 								{/* <button className='btn btn-outline btn-xs mt-2'>Validate</button> */}
 							</div>
+							{/* todo: make "disabled" captcha input */}
 							<div className='form-control mt-6'>
 								<input
-									disabled={disabled}
+									disabled={false}
 									className='btn btn-primary'
 									type='submit'
 									value='Login'

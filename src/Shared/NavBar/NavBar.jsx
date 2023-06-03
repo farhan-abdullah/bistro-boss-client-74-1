@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaShoppingCart } from 'react-icons/fa';
+import useCart from '../../hooks/useCart';
 
 const NavBar = () => {
 	const { user, logOut } = useContext(AuthContext);
+	const [cart] = useCart();
 	const handleLogout = () => {
 		logOut()
 			.then(() => {})
@@ -12,6 +14,7 @@ const NavBar = () => {
 				console.log(error);
 			});
 	};
+
 	const nav = (
 		<div className='flex justify-center'>
 			<li>
@@ -81,7 +84,7 @@ const NavBar = () => {
 						<Link to='/'>
 							<button className='btn'>
 								<FaShoppingCart className='mr-1' />
-								<div className='badge badge-secondary'></div>
+								<div className='badge badge-secondary'>{cart?.length || 0}</div>
 							</button>
 						</Link>
 					</li>
