@@ -9,6 +9,7 @@ import AuthProvider, { AuthContext } from '../../provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { signOut } from 'firebase/auth';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
 	const { login } = useContext(AuthContext);
@@ -116,6 +117,7 @@ const Login = () => {
 								Sign Up
 							</Link>
 						</p>
+						<SocialLogin></SocialLogin>
 					</div>
 				</div>
 			</div>
